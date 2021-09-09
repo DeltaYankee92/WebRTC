@@ -1,0 +1,89 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  height: 300px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #4d4d4d;
+  border: 1px solid #a00303;
+  border-radius: 20px;
+  color: white;
+  @media (max-width: 540px) {
+    width: 80%;
+    min-width: 300px;
+  }
+
+
+  h1 {
+    margin: 0;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    padding: 10px 15px 5px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    margin: 20px 0;
+    outline: none;
+  }
+
+  button {
+    width: 120px;
+    height: 30px;
+    border: none;
+    background-color: #3478e8;
+    color: white;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}
+
+.active-rooms-wrapper {
+  position: absolute;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  color: white;
+  background-color: #4d4d4d;
+  padding: 20px;
+  z-index: 1;
+
+  &.mobile {
+    width: 50%;
+    @media (max-width: 540px) {
+      width: 100%;
+    }
+  }
+  
+  .active-rooms-list {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 10px;
+
+    li {
+      cursor: pointer;
+    }
+  }
+}

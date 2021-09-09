@@ -1,0 +1,45 @@
+<div class="video-chat-wrapper">
+  <div class="video-wrapper">
+    <div class="localStream-wrapper">
+      <video autoplay playsinline [srcObject]="localStream" [muted]="'true'"></video>
+      <div class="localStream-error">{{ error }}</div>
+    </div>
+    <video *ngFor="let stream of getVideoStreams()" [srcObject]="stream" autoplay playsinline></video>
+  </div>
+  <div class="buttons-wrapper">
+    <div class="buttons-container">
+      <button (click)="toggleAudio()">
+        <img src="../../assets/icons/mic-{{ muted ? 'on' : 'off'}}.svg" alt="">
+      </button>
+      <button (click)="toggleVideo()">
+        <img src="../../assets/icons/video-{{ !isVideoOff ? 'on' : 'off'}}.svg" alt="">
+      </button>
+      <button (click)="disconnect()">
+        <img src="../../assets/icons/hang-up.svg" alt="">
+      </button>
+      <button (click)="toggleCapture()">
+        <img src="../../assets/icons/screen-share-{{ !isScreenShare ? 'on' : 'off'}}.png" alt="">
+      </button>
+    </div>
+  </div>
+</div>
+<button
+  class="chat-btn"
+  *ngIf="isMobile()"
+  (click)="openChat()"
+></button>
+<div
+  class="backdrop"
+  *ngIf="showChat"
+  (click)="closeChat()"
+></div>
+<app-chat
+  *ngIf="!isMobile() || showChat"
+  [sessionId]="sessionId"
+  [username]="username"
+  [chatItems]="chat"
+  (sendMessage)="sendMessage($event)"
+  (closeChat)="closeChat()"
+></app-chat>
+
+

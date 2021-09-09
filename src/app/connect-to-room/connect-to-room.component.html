@@ -1,0 +1,56 @@
+<div
+  class="backdrop"
+  *ngIf="showActiveRooms"
+  (click)="closeActiveRooms()"
+></div>
+<div
+  class="burger-btn"
+  *ngIf="isMobile()"
+
+  (click)="openActiveRooms()"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div
+  class="active-rooms-wrapper"
+  *ngIf="!isMobile() || showActiveRooms"
+  [ngClass]="{
+    'mobile': isMobile()
+  }"
+>
+  <button
+    class="close-btn"
+    *ngIf="isMobile()"
+    (click)="closeActiveRooms()"
+  ></button>
+  <h3 class="title">Active rooms</h3>
+  <ul class="active-rooms-list">
+      <li
+        *ngFor="let room of roomIds"
+        (click)="goToMeeting(room)"
+      >{{ room }}</li>
+  </ul>
+</div>
+<div class="wrapper">
+  <h1>Enter chat room</h1>
+  <form [formGroup]="form">
+    <input
+      type="text"
+      formControlName="name"
+      placeholder="Enter your name"
+      (keyup.enter)="goToMeeting()"
+    >
+    <input
+      type="text"
+      placeholder="Enter room ID"
+      formControlName="roomId"
+      (keyup.enter)="goToMeeting()"
+    >
+    <button
+      type="submit"
+      [disabled]="!isFormControlValid('name') || !isFormControlValid('roomId')"
+      (click)="goToMeeting()">Connect</button>
+  </form>
+</div>

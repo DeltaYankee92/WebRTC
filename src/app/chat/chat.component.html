@@ -1,0 +1,32 @@
+<div class="chat-wrapper">
+  <button
+    class="close-btn"
+    (click)="onCloseChat()"
+  ></button>
+  <ul class="messages-wrapper" #scrollContainer>
+    <li
+      *ngFor="let item of chatItems"
+      class="message"
+      [ngClass]="{
+        'my-message': isMyMessage(item)
+      }"
+    >
+      <span class="sender">{{ isMyMessage(item) ? 'You' : item.sender }}</span>
+      <span class="message-text">{{ item.text }}</span>
+      <span class="date-sent"> {{ item.date | date: 'h:mm'}}</span>
+    </li>
+  </ul>
+
+  <div class="input-wrapper">
+    <input
+      type="text"
+      [(ngModel)]="message"
+      (keyup.enter)="onSendMessage()"
+      placeholder="Enter message here"
+    >
+    <button
+      [disabled]="!message"
+      (click)="onSendMessage()"
+    >Send</button>
+  </div>
+</div>
