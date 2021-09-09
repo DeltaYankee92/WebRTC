@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fir-web-rtc-a2c35": {
+      "hosting": {
+        "webrtc": [
+          "fir-web-rtc-a2c35"
+        ]
+      }
+    }
+  }
+}
